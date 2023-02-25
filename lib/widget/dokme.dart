@@ -1,31 +1,36 @@
 import 'package:flutter/material.dart';
-
-import '../screen/page_2.dart';
-
 class Dokme extends StatefulWidget {
   bool onhover;
   String title;
-  Color colorPremary;
   Color colorSecondery;
+  Color colorPremary;
   double radiusMin;
   double radiusMax;
-  Color textColorOne;
   Color textColorTwo;
-  double fontSizeOne;
-  double fontSizeTwo;
+  Color textColorOne;
+  double fontSizeOneMax;
+  double fontSizeTwoMin;
+  double sizeDokmeWidth;
+  double sizeDokmeHeight;
+  int timeAnimatedDokme;
+  VoidCallback onTap;
 
   Dokme({
     Key? key,
     required this.onhover,
     required this.title,
-    required this.colorPremary,
     required this.colorSecondery,
+    required this.colorPremary,
     required this.radiusMin,
     required this.radiusMax,
-    required this.textColorOne,
     required this.textColorTwo,
-    required this.fontSizeOne,
-    required this.fontSizeTwo,
+    required this.textColorOne,
+    required this.fontSizeOneMax,
+    required this.fontSizeTwoMin,
+    required this.sizeDokmeWidth,
+    required this.sizeDokmeHeight,
+    required this.timeAnimatedDokme,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -36,22 +41,19 @@ class _DokmeState extends State<Dokme> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      width: 100,
-      height: 50,
+      width: widget.sizeDokmeWidth,
+      height:widget.sizeDokmeHeight,
       decoration: BoxDecoration(
           color: widget.onhover == true
-              ? widget.colorPremary
-              : widget.colorSecondery,
+              ? widget.colorSecondery
+              : widget.colorPremary,
           borderRadius: widget.onhover == true
               ? BorderRadius.circular(widget.radiusMax)
               : BorderRadius.circular(widget.radiusMin)),
-      duration: Duration(milliseconds: 500),
+      duration: Duration(milliseconds: widget.timeAnimatedDokme),
       child: InkWell(
         borderRadius: BorderRadius.circular(50),
-        onTap: () {
-          Route route = MaterialPageRoute(builder: (context) => Page2());
-          Navigator.push(context, route);
-        },
+        onTap: widget.onTap,
         onHover: (value) {
           widget.onhover = value;
           setState(() {});
@@ -61,10 +63,10 @@ class _DokmeState extends State<Dokme> {
             child: Text(
           widget.title,
           style: TextStyle(
-              color: widget.onhover ? widget.textColorOne : widget.textColorTwo,
+              color: widget.onhover ? widget.textColorTwo : widget.textColorOne,
               fontSize: widget.onhover == true
-                  ? widget.fontSizeOne
-                  : widget.fontSizeTwo),
+                  ? widget.fontSizeOneMax
+                  : widget.fontSizeTwoMin),
         )),
       ),
     );
