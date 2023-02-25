@@ -35,7 +35,7 @@ class _DokmeState extends State<Dokme> {
           });
         } ,
         hoverColor:Colors.grey,
-        child: Center(child: Text(widget.title,style: TextStyle(color: widget.onhover?Colors.red:Colors.yellow,fontSize: widget.onhover==true?20:18),)),
+        child: Center(child: Text(widget.title,style: TextStyle(color: widget.onhover?Colors.green:Colors.yellow,fontSize: widget.onhover==true?20:18),)),
 
       ),
     );
