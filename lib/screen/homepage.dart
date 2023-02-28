@@ -1,10 +1,10 @@
-import 'package:codewizards/screen/page_2.dart';
+import 'dart:ffi';
+
 import 'package:codewizards/screen/settting_page.dart';
-import 'package:codewizards/widget/dokme.dart';
-import 'package:codewizards/widget/matnnevis.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
+
+import '../widget/dokme.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -14,107 +14,151 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool onhover = false;
-  bool klid = false;
+  bool onhover = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        //dokme
-        Row(
+      body: Container(
+        width: 200,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.black, Color(0xff5e5e5e), Color(0xef5e5e5e)],
+          ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(
+              width: 76,
+              height: 13,
+              child: Text(
+                "Code Wizard",
+                style: TextStyle(
+                  color: Color(0xff00ffef),
+                  fontSize: 12,
+                ),
+              ),
+            ),
+            SizedBox(height: 14.40),
+            Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: Color(0xff00ffef),
+                  width: 4,
+                ),
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(height: 14.40),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 12),
+              child: TextField(
+                decoration: InputDecoration(border: InputBorder.none),
+              ),
+              width: 113,
+              height: 33,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Color(0xff00efff), Color(0x00000000)],
+                ),
+              ),
+            ),
+            SizedBox(height: 14.40),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 12),
+              child: TextField(
+                decoration: InputDecoration(border: InputBorder.none),
+                obscureText: true,
+              ),
+              width: 113,
+              height: 33,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Color(0xff00efff), Color(0x00000000)],
+                ),
+              ),
+            ),
+            SizedBox(height: 14.40),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 12),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                ),
+                obscureText: true,
+              ),
+              width: 113,
+              height: 33,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Color(0xff00efff), Color(0x00000000)],
+                ),
+              ),
+            ),
+            SizedBox(height: 12),
+            //dokme log in
             Dokme(
-              onhover: onhover,
-              title: "NEXT PAGE",
-              colorSecondery: Colors.redAccent,
-              colorPremary: Colors.purpleAccent,
-              radiusMin: 5,
-              radiusMax: 10,
-              textColorTwo: Colors.black,
-              textColorOne: Colors.white,
+              timeAnimatedDokme: 500,
+              sizeDokmeHeight: 23,
+              sizeDokmeWidth: 80,
+              title: "LOG IN",
+              colorPremary: Colors.blue,
+              colorSecondery: Colors.blueAccent,
               fontSizeOneMax: 12,
               fontSizeTwoMin: 10,
-              sizeDokmeWidth: 60,
-              sizeDokmeHeight: 25,
-              timeAnimatedDokme: 500,
-              onTap: () {
-                Route route = MaterialPageRoute(builder: (context) => Page2());
-                Navigator.push(context, route);
-              },
+              onhover: onhover,
+              radiusMax: 15,
+              radiusMin: 5,
+              textColorOne: Colors.white,
+              textColorTwo: Colors.white,
+              onTap: () {},
             ),
+            SizedBox(height: 10),
+            //dokme setting
+            Row(
+              children: [
+                Dokme(
+                  onhover: onhover,
+                  title: "",
+                  colorPremary: Colors.transparent,
+                  radiusMin: 3,
+                  textColorOne: Colors.white,
+                  fontSizeTwoMin: 17,
+                  sizeDokmeWidth: 25,
+                  sizeDokmeHeight: 30,
+                  onTap: () {
+                    Get.to(SettingPage());
+                  },
+                  fontSizeOneMax: 0,
+                  textColorTwo: Colors.white12,
+                  radiusMax: 0,
+                  colorSecondery: Colors.white12,
+                  timeAnimatedDokme: 0,
+                  iconDokme: Icons.settings,
+                ),
+              ],
+            )
           ],
         ),
-        SizedBox(
-          height: 50,
-        ),
-        //متن وسط
-        Matn(
-          matn: "FARZAD",
-          rangCoverMatn: Colors.white,
-          rangMatn: Colors.black,
-          rangShadowOne: Colors.blueAccent,
-          rangShadowTwo: Colors.red,
-          sizeFont: 25,
-        ),
-        // NeumorphicSwitch(
-        //   onChanged: (value) {
-        //     klid = value;
-        //     setState(() {
-        //       Get.changeThemeMode(
-        //           klid == true ? ThemeMode.dark : ThemeMode.light);
-        //       Get.snackbar("تغییر کرد",
-        //           "رنگ صفحه شما به ${klid == true ? "مشکی" : "سفید"} تغییر کرد",
-        //           colorText: klid == true ? Colors.white : Colors.black);
-        //     });
-        //   },
-        //   isEnabled: true,
-        //   value: klid,
-        // ),
-        Spacer(),
-        //ایکون ستینگ
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            IconButton(
-              onPressed: () {
-                Route route =
-                    MaterialPageRoute(builder: (context) => SettingPage());
-                Navigator.push(context, route);
-              },
-              icon: NeumorphicIcon(Icons.settings,
-                  style: NeumorphicStyle(
-                    color: klid == true ? Colors.white : Colors.black,
-                  )),
-              splashColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Dokme(
-                onhover: onhover,
-                title: "کلیک کنید",
-                colorSecondery: Colors.black,
-                colorPremary: Colors.green,
-                radiusMin: 0,
-                radiusMax: 15,
-                textColorTwo: Colors.yellow,
-                textColorOne: Colors.white,
-                fontSizeOneMax: 30,
-                fontSizeTwoMin: 10,
-                sizeDokmeWidth: 70,
-                sizeDokmeHeight: 70,
-                timeAnimatedDokme: 500,
-                onTap: () {
-                  Get.to(Page2());
-                }),
-          ],
-        )
-      ],
-    ));
+      ),
+    );
   }
 }
