@@ -1,23 +1,25 @@
 import 'package:codewizards/screen/homepage.dart';
 import 'package:flutter/material.dart';
-void main(){
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:get/get.dart';
+
+void main() {
   runApp(Codewizard());
 }
+
 class Codewizard extends StatelessWidget {
   const Codewizard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      themeMode: ThemeMode.light,
+      theme: ThemeData(scaffoldBackgroundColor: Colors.grey),
+      darkTheme: ThemeData(
+        scaffoldBackgroundColor: Colors.black,
+      ),
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true
-      ),
-      themeMode: ThemeMode.dark,
-      darkTheme: ThemeData.dark(
-        useMaterial3: true
-      ),
-      home: HomePage(),
+        home: HomePage(),
     );
   }
 }
